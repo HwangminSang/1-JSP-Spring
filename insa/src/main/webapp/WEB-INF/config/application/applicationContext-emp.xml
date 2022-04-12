@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  
+  <bean id="affairServiceFacade"
+         class="kr.co.yooooon.hr.affair.sf.AffairServiceFacadeImpl"
+         p:affairApplicationService-ref="affairApplicationService"
+         />
+         
+         
+  <bean id="affairApplicationService" 
+         class="kr.co.yooooon.hr.affair.applicationService.AffairApplicationServiceImpl"
+         p:baseApplicationService-ref="baseApplicationService"
+         p:empDAO-ref="empDAO"
+         p:workInfoDAO-ref="workInfoDAO"
+         p:careerInfoDAO-ref="careerInfoDAO"
+         p:educationInfoDAO-ref="educationInfoDAO"
+         p:licenseInfoDAO-ref="licenseInfoDAO"
+         p:familyInfoDAO-ref="familyInfoDAO"
+         />
+            
+
+  <bean id="empDAO" class="kr.co.yooooon.hr.affair.dao.EmpDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+        <bean id="workInfoDAO" class="kr.co.yooooon.hr.affair.dao.WorkInfoDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      <bean id="careerInfoDAO" class="kr.co.yooooon.hr.affair.dao.CareerInfoDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      <bean id="educationInfoDAO" class="kr.co.yooooon.hr.affair.dao.EducationInfoDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      <bean id="licenseInfoDAO" class="kr.co.yooooon.hr.affair.dao.LicenseInfoDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      <bean id="familyInfoDAO" class="kr.co.yooooon.hr.affair.dao.FamilyInfoDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+   
+    
+
+</beans>

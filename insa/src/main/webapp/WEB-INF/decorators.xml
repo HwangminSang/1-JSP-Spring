@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+
+ <decorators defaultdir="/WEB-INF/views/decorator">
+	<excludes>  <!-- 제외시킬애들  -->
+       <pattern>/loginForm.html</pattern>  
+       <pattern>/top.html</pattern>
+       <pattern>/base/codeWindow.html*</pattern>  <!-- 사원등록시 부서나 직급등의 모달창은 제외되어 모달창을 만든다  -->
+       <pattern>/base/postWindow.html*</pattern>   
+	</excludes>   
+	
+	<decorator name="main" page="decorator.jsp">  <!-- 모든요청에 대해 sitemesh사용  main자리에 들어감 -->
+        <pattern>/*</pattern>  
+	</decorator>
+ 
+ </decorators>

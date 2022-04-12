@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  
+  <bean id="certificateServiceFacade"
+         class="kr.co.yooooon.hr.certificate.sf.CertificateServiceFacadeImpl"
+         p:certificateApplicationService-ref="certificateApplicationService"
+         />
+         
+         <bean id="certificateApplicationService" 
+         class="kr.co.yooooon.hr.certificate.applicationService.CertificateApplicatonServiceImpl"
+         p:certificateDAO-ref="certificateDAO"
+         p:proofCertificateDAO-ref="proofCertificateDAO"
+         />
+            
+  
+  
+  <bean id="certificateDAO" class="kr.co.yooooon.hr.certificate.dao.CertificateDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="proofCertificateDAO" class="kr.co.yooooon.hr.certificate.dao.ProofCertificateDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+
+</beans>

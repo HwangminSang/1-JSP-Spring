@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN"
+    "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+  
+  <!-- appender 클래스는 출력방향당 한개.   출력을 담당-->
+ 	<appender name="rollingFile" class="org.apache.log4j.DailyRollingFileAppender">  <!-- 일자별로 파일에 써주는 역할   -->
+ 		<param name="File" value="c:/logs/log.log" /> 
+ 		<param name="Append" value="true" />   <!-- false 하면 기존에 있던걸 덮어쓴다. true면 이어서 씀  -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" /> 
+		
+		<layout class="org.apache.log4j.PatternLayout">   <!-- 출력 format   -->
+			<param name="ConversionPattern" value="%d %p [%C{10}] %M %m %n" /> 
+		</layout> 
+	
+	</appender>
+	
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender"> <!-- 콘솔에 출력  -->
+        <param name="Target" value="System.out" />
+        
+        <layout class="org.apache.log4j.PatternLayout">  <!--  appender에서 받아온것을 ConversionPattern 패턴에따라 출력 -->
+            <param name="ConversionPattern" value="%d{MMM dd hh:mm:ss aa} %p - %C{1}.%M(%F:%L) %n" />  <!--  이렇게 바꿔서 나온다.  -->
+        </layout>
+    
+    </appender>
+
+    <logger name="kr.co.yooooon" additivity="false"> <!--  이 패키지 이하의 debug 에는 console에 쓰고 최상단 부모 root에 포함되더라도 예외를 주는거다 --><!--  즉 getClass() 를 허여 클래스 정보가 넘어왔을때 그걸 보고 사용 27번줄도 연관 -->
+		                         <!-- additivity="false" 상위 appender를 상속받는것을 제어 해주는 옵션  -->
+		<level value="DEBUG" /> <!--  kr.co.yooooon 여기 패키지에서 로그찍는 애들은 DEBUG 이상레벨에서 다 출력해라 -->
+        <appender-ref ref="CONSOLE" />  <!--  CONSOLE에다가 -->
+    </logger>
+	
+    <root> <!--  루트헤더   추상메서드 처럼 선언해서 다른 logger 들이 APPENDER 출력방향이 없는경우  상속받아서 아래 지시를 따라 APPENDR 한다 -->  
+        <level value="DEBUG" /> <!-- 출력레벨 설정 -->  <!-- 이 메서드를 출력받는놈이 VLAUE=WRAN 인경우 오버라이딩 하기떄문에 WARN을 따른다  -->
+        <appender-ref ref="CONSOLE" /> <!--  출력할 위치 설정 -->
+        <appender-ref ref="rollingFile" /> <!-- -출력을 담당 ,  출력방향당 한개의 클래스 ( 로그 , 메일, 파일)
+         -->
+    </root>
+
+</log4j:configuration>

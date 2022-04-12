@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="empUrlHandlerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="1" />
+		<property name="alwaysUseFullPath" value="false" />
+		<property name="mappings">
+			<props>
+				<prop key="/empRegist.do">empRegistController</prop>
+				<prop key="/empDetail.do">empDetailController</prop>
+				<prop key="/empList.do">empListController</prop>
+				<prop key="/empFind.html">urlFilenameViewController</prop>
+				<prop key="/empRegist1.html">urlFilenameViewController</prop>
+				<prop key="/empDetailedView.html">urlFilenameViewController</prop>
+				<prop key="/empAuthority.html">urlFilenameViewController</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<bean id="empRegistController"
+		class="kr.co.yooooon.hr.affair.controller.EmpRegistController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:affairServiceFacade-ref="affairServiceFacade" />
+		
+	<bean id="empDetailController"
+		class="kr.co.yooooon.hr.affair.controller.EmpDetailController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:affairServiceFacade-ref="affairServiceFacade" />
+
+	<bean id="empListController"
+		class="kr.co.yooooon.hr.affair.controller.EmpListController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:affairServiceFacade-ref="affairServiceFacade" />
+
+
+		<bean id="viewResolver"
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/views/emp/" />
+			<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

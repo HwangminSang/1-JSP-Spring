@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  
+  
+<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		p:location="classpath:/jdbc.properties" />
+  
+
+    <!-- 데이터소스는 인터페이서 뒤에놈이 구현객체   porm.xml에 추가해야한다 그리고 commons.dbcp2.x 버전은 세터 메서드로 설정가능하다-->
+  <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+
+<property name="driverClassName" value="${jdbc.driverClassName}"/>
+<property name="url" value="${jdbc.url}"/>
+<property name="username" value="${jdbc.username}"/>
+<property name="password" value="${jdbc.password}"/>
+<property name="maxTotal" value="${jdbc.maxTotal}"/> <!-- 동시에 사용할수있는 촤대 커넥션 갯수 -->
+<property name="maxIdle" value="${jdbc.maxIdle}"/>  
+<property name="maxWaitMillis" value="${jdbc.maxWaitMiLLis}"></property>
+  </bean>
+
+
+
+ <bean id="DataSourceTransactionManager"  
+   class="kr.co.yooooon.common.transaction.DataSourceTransactionManager">
+  <property name="dataSource" ref="dataSource" />
+ </bean>
+
+
+
+</beans>

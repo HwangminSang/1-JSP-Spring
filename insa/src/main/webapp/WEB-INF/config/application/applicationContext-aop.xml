@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <aop:config><!-- .. 은 뎁스 상관없이    sf 뒤에 * 모든클래스  그뒤에 * 모든메서드   그 뒤에  (..)파라미터갯수 상관없이-->
+          
+      <!-- 로그는 model단 다 찍기때문에 이 point컷 지정// 아래는 advice가 적용될 클래스 메서드 패턴 지정 -->    
+  <aop:pointcut id="serviceDaoPointcut"  
+       expression="execution(* kr.co.yooooon..sf.*.*(..)) or
+                    execution(* kr.co.yooooon..applicationService.*.*(..)) or
+                    execution(* kr.co.yooooon..dao.*.*(..))" />
+       
+       <!-- 트랙잭션관리 및  DataAccessexception은 퍼사드에서 잡기때문에 이 point컷 지정-->
+  <aop:pointcut id="servicePointcut" 
+       expression="execution(* kr.co.yooooon..sf.*.*(..))" />
+       
+       <!-- Aspcet Advice+PointCut -->
+       <aop:advisor advice-ref="transactionAdvice" pointcut-ref="servicePointcut" />  
+       <aop:advisor advice-ref="loggingAdvice" pointcut-ref="serviceDaoPointcut" />
+       <aop:advisor advice-ref="dataAccessThrowsAdvice" pointcut-ref="servicePointcut" />
+    </aop:config>
+   
+    <!-- 로그 찍는 역할  MethodInterceptor 구현 (메서드 호출 전후)-->
+    <bean id="loggingAdvice" 
+         class="kr.co.yooooon.common.advice.LoggingAdvice" />
+                     
+      <!-- DataAccessexception 잡는 어드바이스   ThrowsAdvice 구현 (exception 발생하면 실행)-->               
+  	<bean id="dataAccessThrowsAdvice"
+          class="kr.co.yooooon.common.advice.DataAccessThrowsAdvice" />
+
+     <!-- 서비스퍼사드에서 트랜잭션 관리    MethodInterceptor 구현 (메서드 호출 전후)-->
+    <bean id="transactionAdvice" 
+         class="kr.co.yooooon.common.advice.TransactionAdvice"
+      	 p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+      	 
+    
+    
+    
+</beans>

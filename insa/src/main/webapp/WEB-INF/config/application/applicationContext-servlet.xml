@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+      <!--ModelAndView에 viewname에 따라 처리하게 해주는 놈 -->
+	<bean id="beanNameViewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver" 
+		p:order="0" 
+	/>
+
+	<bean id="urlFilenameViewController"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+       <!-- 멀티액션을 구현한 컨트롤러가  메서드이름에 따라 요청처리하게 만둘어주는 인터페이스 -->
+	<bean id="parameterMethodNameResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver"
+		p:paramName="method" />
+
+      <!--홈화면으로 가게 고정시키는 컨트롤러  여기서 viewname 바로 셋팅해주는 컨트롤러-->
+    <bean id="indexViewController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController" 
+		p:viewName="main"/>
+
+	
+
+
+	<!-- 파일 업로드로 들어오는 데이터를 처리하는 객체 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:maxUploadSize="100000000" 
+		p:maxInMemorySize="100000000" />
+
+<!-- json -->
+   <bean id="jsonView"
+      class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+      <property name="contentType"
+         value="application/json; charset=UTF-8" />
+   </bean>
+
+
+</beans>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app >
+	
+	<display-name>Spring</display-name>
+	
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/views/loginTest.jsp</welcome-file>
+  	</welcome-file-list>	
+
+	
+	<filter> 
+    <filter-name>encodingFilter</filter-name> 
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
+    <init-param> 
+       <param-name>encoding</param-name> 
+       <param-value>UTF-8</param-value> 
+    </init-param> 
+    <init-param> 
+       <param-name>forceEncoding</param-name> 
+       <param-value>true</param-value> 
+    </init-param> 
+ </filter> 
+ <filter-mapping> 
+    <filter-name>encodingFilter</filter-name> 
+    <url-pattern>/*</url-pattern> 
+ </filter-mapping> 
+
+	 <!-- 위쪽 필터보다 아래에 있어야 오류없이 적용됨 -->
+	<filter>
+    	<filter-name>sitemesh</filter-name>
+    	<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+  	</filter>
+  		<filter-mapping>
+    	<filter-name>sitemesh</filter-name>
+    <url-pattern>/*</url-pattern>
+  	</filter-mapping>	
+  	
+  	
+  	<context-param>  <!-- 부모컨테이너는 한개 --> -->
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>/WEB-INF/config/application/applicationContext*.xml</param-value>
+	</context-param>	
+  	
+  	
+  	<listener>  <!-- 설정 파일을 읽어와서 부모컨테이너 객체를 만드는놈  --> 
+  	            <!--  ServletContext가 만들어고 나서 얘를 호출.  -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+  	
+ <servlet>
+    <servlet-name>main</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/servlet/servlet-main.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>main</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>main</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>affair</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/servlet/servlet-emp.xml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>affair</servlet-name>
+    <url-pattern>/emp/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>affair</servlet-name>
+    <url-pattern>/affair/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>base</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/servlet/servlet-base.xml</param-value>
+    </init-param>
+    <load-on-startup>3</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>base</servlet-name>
+    <url-pattern>/base/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>salary</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/servlet/servlet-salary.xml</param-value>
+    </init-param>
+    <load-on-startup>4</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>salary</servlet-name>
+    <url-pattern>/salary/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>attd</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/servlet/servlet-attendance.xml</param-value>
+    </init-param>
+    <load-on-startup>5</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>attd</servlet-name>
+    <url-pattern>/attendance/*</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>certificate</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/servlet/servlet-certificate.xml</param-value>
+    </init-param>
+    <load-on-startup>6</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>certificate</servlet-name>
+    <url-pattern>/certificate/*</url-pattern>
+  </servlet-mapping>
+</web-app>

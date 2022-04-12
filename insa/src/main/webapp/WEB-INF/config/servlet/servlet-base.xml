@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		
+	<bean id="baseUrlHandlerMapping" 
+			class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="1"/>
+		<property name="alwaysUseFullPath" value="false"/>
+		<property name="mappings">
+			<props>
+		  	 	<prop key="/codeWindow.html">urlFilenameViewController</prop>
+		  	 	<prop key="/codeList.do">codeListController</prop>
+		  	 	<prop key="/empImg.do">empImgController</prop>
+		  	 	
+		  	 	<prop key="/deptList.html">urlFilenameViewController</prop>
+		  	 	<prop key="/deptList.do">deptListController</prop>
+		  	 	
+		  		<prop key="/positionList.html">urlFilenameViewController</prop>
+		  		<prop key="/positionList.do">positionListController</prop>
+		  		
+		  		<prop key="/codeList.html">urlFilenameViewController</prop>
+		  		<prop key="/codeList.do">codeListController</prop>
+		  		
+		  		<prop key="/holidayList.html">urlFilenameViewController</prop>
+		  		<prop key="/holidayList.do">holidayListController</prop>
+		  		
+		  		<prop key="/empReport.do">empReportController</prop>
+		  	 	<prop key="/proofImg.do">proofImgController</prop>
+		  	 	<prop key="/sendEmail.do">sendEmailController</prop>
+		  	 	
+		  	 	
+		  	 	<prop key="/listBoard1.html">urlFilenameViewController</prop>
+		  	 	<prop key="/listBoard1.do">boardListController1</prop>
+		  	 	<prop key="/registForm.html">urlFilenameViewController</prop>
+		  	 	<prop key="/registBoard.do">boardRegistController</prop>
+		  	 	<prop key="/detailBoard.html">urlFilenameViewController</prop>
+		  	 	<prop key="/detailBoard.do">boardDetailController</prop>
+		  	 	<prop key="/downloadBoard.do">boardDownloadController</prop>
+		  	 	<prop key="/deleteBoard.do">boardDeleteController</prop>	
+		  	 	<prop key="/adminCodeList.do">adminCodeController</prop>
+		  	 	<prop key="/menuList.do">menuController</prop>	 
+
+
+			</props>
+		</property>	
+	</bean>
+	
+	<bean id="codeListController"
+		class="kr.co.yooooon.base.controller.CodeListController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="empImgController"
+		class="kr.co.yooooon.base.controller.EmpImgController"
+		p:cacheSeconds="0"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="deptListController"
+		class="kr.co.yooooon.base.controller.DeptListController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade"
+		 />
+		
+	<bean id="positionListController"
+		class="kr.co.yooooon.base.controller.PositionListController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="holidayListController"
+		class="kr.co.yooooon.base.controller.HolidayListController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="empReportController"
+		class="kr.co.yooooon.base.controller.EmpReportController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade"
+		 />
+		 
+				
+	<bean id="proofImgController"
+		class="kr.co.yooooon.base.controller.ProofImgController"
+		p:cacheSeconds="0"
+		p:certificateServiceFacade-ref="certificateServiceFacade" />
+	
+	<bean id="boardListController1"
+		class="kr.co.yooooon.base.controller.BoardListController1"
+		p:cacheSeconds="0"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="boardRegistController"
+		class="kr.co.yooooon.base.controller.BoardRegistController"
+		p:cacheSeconds="0"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+	
+	<bean id="boardDetailController"
+		class="kr.co.yooooon.base.controller.BoardDetailController"
+		p:cacheSeconds="0"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+	
+	<bean id="boardDownloadController"
+		class="kr.co.yooooon.base.controller.BoardDownloadController"
+		p:cacheSeconds="0"/>
+	
+	<bean id="boardDeleteController"
+		class="kr.co.yooooon.base.controller.BoardDeleteController"
+		p:cacheSeconds="0"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="menuController"
+		class="kr.co.yooooon.base.controller.MenuController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade" />
+		
+	<bean id="adminCodeController"
+		class="kr.co.yooooon.base.controller.AdminCodeController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade" />	
+		
+		<bean id="sendEmailController"
+		class="kr.co.yooooon.base.controller.SendEmailController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:baseServiceFacade-ref="baseServiceFacade"/>
+		 
+	
+		
+		<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/base/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+</beans>

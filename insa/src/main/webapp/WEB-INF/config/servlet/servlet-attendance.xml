@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="attdUrlHandlerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="1" />
+		<property name="alwaysUseFullPath" value="false" />
+		<property name="mappings">
+			<props>
+				<prop key="/dayAttendance.html">urlFilenameViewController</prop>
+				<prop key="/dayAttendance.do">dayAttdController</prop>
+
+				<prop key="/restAttendance.html">urlFilenameViewController</prop>
+				<prop key="/break.html">urlFilenameViewController</prop>
+				<prop key="/overwork.html">urlFilenameViewController</prop>
+			
+				<prop key="/travel.html">urlFilenameViewController</prop>
+			
+				<prop key="/restAttendance.do">restAttdController</prop>
+				<prop key="/holidaywork.html">urlFilenameViewController</prop>
+
+				<prop key="/attendanceApploval.html">urlFilenameViewController</prop>
+				<prop key="/attendanceApploval.do">attdApplovalController</prop>
+
+				<prop key="/dayAttendanceManage.html">urlFilenameViewController</prop>
+				<prop key="/dayAttendanceManage.do">dayAttdManageController</prop>
+
+				<prop key="/monthAttendanceManage.html">urlFilenameViewController</prop>
+				<prop key="/monthAttendanceManage.do">monthAttdManageController</prop>
+				
+				<prop key="/annualVacationManage.html">urlFilenameViewController</prop>
+				<prop key="/annualVacationManage.do">annualVacationManageController</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<bean id="dayAttdController"
+		class="kr.co.yooooon.hr.attd.controller.DayAttdController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:attdServiceFacade-ref="attdServiceFacade" />
+		
+	<bean id="restAttdController"
+		class="kr.co.yooooon.hr.attd.controller.RestAttdController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:attdServiceFacade-ref="attdServiceFacade" />
+
+	<bean id="attdApplovalController"
+		class="kr.co.yooooon.hr.attd.controller.AttdApplovalController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:attdServiceFacade-ref="attdServiceFacade" />
+
+	<bean id="dayAttdManageController"
+		class="kr.co.yooooon.hr.attd.controller.DayAttdManageController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:attdServiceFacade-ref="attdServiceFacade" />
+
+
+	<bean id="monthAttdManageController"  
+		class="kr.co.yooooon.hr.attd.controller.MonthAttdManageController"
+		p:cacheSeconds="0"  
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:attdServiceFacade-ref="attdServiceFacade" />
+	
+	<bean id="annualVacationManageController"
+		class="kr.co.yooooon.hr.attd.controller.annualVacationManageController"
+		p:cacheSeconds="0"
+		p:methodNameResolver-ref="parameterMethodNameResolver"
+		p:attdServiceFacade-ref="attdServiceFacade" />
+		
+		<bean id="viewResolver"
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/views/attendance/" />
+			<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

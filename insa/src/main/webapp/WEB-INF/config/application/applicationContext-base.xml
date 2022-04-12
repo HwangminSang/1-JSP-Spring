@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  
+  <bean id="baseServiceFacade"
+         class="kr.co.yooooon.base.sf.BaseServiceFacadeImpl"
+         p:baseApplicationService-ref="baseApplicationService"
+     
+         />
+         
+  <bean id="baseApplicationService" 
+         class="kr.co.yooooon.base.applicationService.BaseApplicationServiceImpl"
+         p:affairApplicationService-ref="affairApplicationService"
+         p:detailCodeDAO-ref="detailCodeDAO"
+         p:holidayDAO-ref="holidayDAO"
+         p:deptDAO-ref="deptDAO"
+         p:boardDAO-ref="boardDAO"
+         p:codeDAO-ref="codeDAO"
+         p:reportDAO-ref="reportDAO"
+         p:menuDAO-ref="menuDAO"
+         p:adminCodeDAO-ref="adminDAO"
+         p:positonDAO-ref="positionDAO" />
+        
+ 
+  
+  
+  <bean id="detailCodeDAO" class="kr.co.yooooon.base.dao.DetailCodeDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="holidayDAO" class="kr.co.yooooon.base.dao.HolidayDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="deptDAO" class="kr.co.yooooon.base.dao.DeptDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="boardDAO" class="kr.co.yooooon.base.dao.BoardDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="codeDAO" class="kr.co.yooooon.base.dao.CodeDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+     <bean id="reportDAO" class="kr.co.yooooon.base.dao.ReportDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+     <bean id="menuDAO" class="kr.co.yooooon.base.dao.MenuDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+     <bean id="adminDAO" class="kr.co.yooooon.base.dao.AdminCodeDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+       <bean id="positionDAO" class="kr.co.yooooon.base.dao.PositonDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+</beans>

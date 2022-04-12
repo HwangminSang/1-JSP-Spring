@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  
+  <bean id="attdServiceFacade"
+         class="kr.co.yooooon.hr.attd.sf.AttdServiceFacadeImpl"
+         p:attdApplicationService-ref="attdApplicationService"
+         />
+         
+         <bean id="attdApplicationService" 
+         class="kr.co.yooooon.hr.attd.applicationService.AttdApplicationServiceImpl"
+         p:dayAttdDAO-ref="dayAttdDAO"
+         p:restAttdDAO-ref="restAttdDAO"
+         p:dayAttdMgtDAO-ref="dayAttdMgtDAO"
+         p:monthAttdMgtDAO-ref="monthAttdMgtDAO"
+         p:annualVacationMgtDAO-ref="annualVacationMgtDAO" />
+            
+  
+  
+  <bean id="dayAttdDAO" class="kr.co.yooooon.hr.attd.dao.DayAttdDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="restAttdDAO" class="kr.co.yooooon.hr.attd.dao.RestAttdDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="dayAttdMgtDAO" class="kr.co.yooooon.hr.attd.dao.DayAttdMgtDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="monthAttdMgtDAO" class="kr.co.yooooon.hr.attd.dao.MonthAttdMgtDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+    
+      
+  <bean id="annualVacationMgtDAO" class="kr.co.yooooon.hr.attd.dao.AnnualVacationMgtDAOImpl"
+    p:dataSourceTransactionManager-ref="DataSourceTransactionManager" />
+</beans>

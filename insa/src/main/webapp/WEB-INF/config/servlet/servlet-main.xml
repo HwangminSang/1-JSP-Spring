@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="mainUrlHandlerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="1" /> <!-- 0순위보다 늦게 실행 -->
+		<property name="alwaysUseFullPath" value="false" /> <!-- 루트 컨테이너는 true , false 하나  어차피 서블릿경로가 없기떄문에 괜찮음  -->
+		<property name="mappings">
+			<props>
+				  <!-- 시작페이지로 이동하게  parameterizableViewController 사용-->
+			       <!-- depth 상관없이 어떤경로에서든 home.html로 요청이 들어오면 메인화면으로 가게 설정함 -->
+			    <prop key="/**/home.html">indexViewController</prop>
+				<prop key="/loginTest.html">urlFilenameViewController</prop>
+				<prop key="/menu.html">urlFilenameViewController</prop>
+				<prop key="/login.do">empLoginController</prop>
+				<prop key="/logout.do">empLogoutController</prop>
+			    <prop key="/busanFood.do">busanFoodController</prop>
+				<prop key="/busanInformation.html">urlFilenameViewController</prop>
+				<prop key="/board.html">urlFilenameViewController</prop>
+			
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="empLoginController"
+		class="kr.co.yooooon.base.controller.EmpLoginController"
+		p:cacheSeconds="0"
+		p:baseServiceFacade-ref="baseServiceFacade"  
+		p:affairServiceFacade-ref="affairServiceFacade"/> 
+	
+	
+	<bean id="empLogoutController"
+		class="kr.co.yooooon.base.controller.EmpLogoutController"
+		p:cacheSeconds="0"/>	
+		
+		<bean id="busanFoodController" 
+	    class="kr.co.yooooon.base.controller.BusanFoodController"
+	    p:cacheSeconds="0"
+	    p:methodNameResolver-ref="parameterMethodNameResolver"/>
+	
+	
+		<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+</beans>

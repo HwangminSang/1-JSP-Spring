@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.11.201912160804-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/webapp/WEB-INF/config/servlet/servlet-main.xml</config>
+		<config>src/main/webapp/WEB-INF/config/servlet/servlet-attendance.xml</config>
+		<config>src/main/webapp/WEB-INF/config/servlet/servlet-certificate.xml</config>
+		<config>src/main/webapp/WEB-INF/config/servlet/servlet-salary.xml</config>
+		<config>src/main/webapp/WEB-INF/config/servlet/servlet-emp.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-aop.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-attendance.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-certificate.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-emp.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-jdbc.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-salary.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext-base.xml</config>
+		<config>src/main/webapp/WEB-INF/config/application/applicationContext.xml</config>
+		<config>src/main/webapp/WEB-INF/config/servlet/servlet-base.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
